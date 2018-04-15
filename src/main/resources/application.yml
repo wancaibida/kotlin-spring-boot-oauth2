@@ -1,0 +1,58 @@
+spring:
+    datasource:
+        druid:
+            url: ${JDBC_CONNECTION_STRING:jdbc:postgresql://localhost:5432/app_dev}
+            username: ${JDBC_CONNECTION_USERNAME:app}
+            password: ${JDBC_CONNECTION_PASSWORD:app}
+            driver-class-name: org.postgresql.Driver
+    messages:
+        basename: i18n/messages
+#    jpa:
+#        hibernate:
+#            ddl-auto: create
+
+security:
+    enable-csrf: true
+
+#hibernate:
+#    dialect: org.hibernate.dialect.PostgreSQL94Dialect
+#    cache:
+#        use_second_level_cache: false
+#    show_sql: &printSql true
+#    format_sql: *printSql
+
+
+flyway:
+    enabled: true
+    encoding: UTF-8
+    locations: classpath:migration
+
+graphiql:
+    enabled: true
+    mapping: /graphiql
+    endpoint: /graphql
+
+---
+
+spring:
+    profiles: test
+    datasource:
+        druid:
+            url: jdbc:postgresql://localhost:5432/app_test
+
+flyway:
+    enabled: false
+
+hibernate:
+    hbm2ddl:
+        auto: create
+#logging:
+#    pattern:
+#        console: >-
+#                %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint}
+#                %clr(%5p)
+#                %clr(---){faint} %clr([%15.15t]){faint}
+#                %clr(%-40.40logger{39}){cyan} %clr(:){faint}
+#                %m%n%wex
+#        level: INFO
+

@@ -1,0 +1,14 @@
+type User {
+    id: ID!
+    username: String!
+    roles: [Role]
+}
+
+input UserFilter {
+    username: String
+}
+
+type Query {
+    findAllUsers(page:Pageable,filter:UserFilter): [User]!
+    countUsers(filter:UserFilter): Long!
+}
