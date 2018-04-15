@@ -64,7 +64,7 @@ class AuthorizationServerConfiguration : AuthorizationServerConfigurerAdapter() 
     @Bean
     fun userDetailsManager(): UserDetailsManager {
         val jdbcUserDetailsManager = JdbcUserDetailsManager()
-        jdbcUserDetailsManager.setDataSource(dataSource)
+        jdbcUserDetailsManager.dataSource = dataSource
         jdbcUserDetailsManager.apply {
             setAuthoritiesByUsernameQuery("""
                 SELECT username,
